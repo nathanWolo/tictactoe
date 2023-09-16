@@ -5,15 +5,15 @@ CC = g++
 CFLAGS = -std=c++20
 
 # Target executable
-TARGET = base_tictactoe
+BASE_GAME = base_tictactoe
 
 # Source files
-SRC = base_tictactoe.cpp
+BASE_SRC = base_tictactoe.cpp base_tictactoe_board.cpp
 
-all: $(TARGET)
+all: $(BASE_GAME)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+$(BASE_GAME): $(SRC)
+	$(CC) $(CFLAGS) $(BASE_SRC) -o $(BASE_GAME)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(BASE_GAME)
