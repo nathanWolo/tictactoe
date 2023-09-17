@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
-#include "base_tictactoe_board.cpp"
+#include "base_tictactoe_board.h"
 
-int simpleMiniMax(TicTacToeBoard board) {
+int simpleMiniMax(BaseTicTacToeBoard board) {
     if (board.checkWinner() == 'X') {
         return 1;
     } else if (board.checkWinner() == 'O') {
@@ -40,9 +40,14 @@ int simpleMiniMax(TicTacToeBoard board) {
 
 
 int main() {
-    TicTacToeBoard board;
+    BaseTicTacToeBoard board = BaseTicTacToeBoard();
     while (board.checkWinner() == ' ' && !board.isDrawn()) {
-        board.display_board();
+        board.displayBoard();
+        // std::vector<char> charBoard = board.getBoard();
+        // std::cout << "boardvec: " << "\n";
+        // for (int i = 0; i < 9; ++i) {
+        //     std::cout << charBoard[i] << " ";
+        // }
         std::vector<int> legalMoves = board.getLegalMoves();
         std::cout << "Legal moves: ";
         if (board.getSideToMove() == 'X') {
@@ -73,7 +78,6 @@ int main() {
             board.makeMove(move);
         }
     }
-    board.display_board();
     if (board.isDrawn()) {
         std::cout << "Draw!" << std::endl;
     } else if (board.checkWinner() != ' '){
