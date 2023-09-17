@@ -11,25 +11,24 @@ int main() {
     int computerWins = 0;
     int computerLosses = 0;
     int computerDraws = 0;
-    for (int i = 0; i < 20; ++i) {
+    for (int i = 0; i < 100; ++i) {
         UltimateTicTacToeBoard board = UltimateTicTacToeBoard();
         while(board.checkWinner() == ' ' && !board.isDrawn()) {
             board.displayBoard();
-
+            std::cout << "new version wins: " << computerWins << " new version  draws: " << computerDraws << " new version  losses: " << computerLosses << std::endl;
             
             if (board.getSideToMove() == 'X') {
-                //make a random legal move
-                std::vector<std::vector<int>> legalMoves = board.getLegalMoves();
-                int randomIndex = rand() % legalMoves.size();
-                board.makeMove(legalMoves[randomIndex][0], legalMoves[randomIndex][1]);
+                //old version of engine plays X
+                std::vector<int> bestMove = oldGetBestMove(board, 'X', 100);
+                board.makeMove(bestMove[0], bestMove[1]);
             }
             else {
-                std::cout << "Computer wins: " << computerWins << " Computer draws: " << computerDraws << " Computer losses: " << computerLosses << std::endl;
-                std::cout << "Computer's turn..." << std::endl;
-                std::cout << "Computer is thinking..." << std::endl;
+                // std::cout << "Computer wins: " << computerWins << " Computer draws: " << computerDraws << " Computer losses: " << computerLosses << std::endl;
+                // std::cout << "Computer's turn..." << std::endl;
+                // std::cout << "Computer is thinking..." << std::endl;
 
-                std::vector<int> bestMove = getBestMove(board, 'O', 500);
-                std::cout << "Computers best move: (" << bestMove[0] << ", " << bestMove[1] << ")" << std::endl;
+                std::vector<int> bestMove = getBestMove(board, 'O', 100);
+                // std::cout << "Computers best move: (" << bestMove[0] << ", " << bestMove[1] << ")" << std::endl;
                 // usleep(100000);
                 board.makeMove(bestMove[0], bestMove[1]);
             }

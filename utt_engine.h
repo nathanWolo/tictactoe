@@ -9,9 +9,16 @@
 
 int evaluate(UltimateTicTacToeBoard board, char rootPlayer);
 
-int negamax(UltimateTicTacToeBoard board, int depth, int ply, char rootPlayer, int color, std::chrono::time_point<std::chrono::high_resolution_clock> endTime);
+int negamax(UltimateTicTacToeBoard board, int depth, int ply, char rootPlayer, int color, int alpha, int beta,
+            std::chrono::time_point<std::chrono::high_resolution_clock> endTime);
 
 std::vector<int> getBestMove(UltimateTicTacToeBoard board, char rootPlayer, int maxTime);
 
+int oldEvaluate(UltimateTicTacToeBoard board, char rootPlayer);
+
+int oldNegamax(UltimateTicTacToeBoard board, int depth, int ply, char rootPlayer, int color, 
+            std::chrono::time_point<std::chrono::high_resolution_clock> endTime);
+
+std::vector<int> oldGetBestMove(UltimateTicTacToeBoard board, char rootPlayer, int maxTime);
 
 #endif
