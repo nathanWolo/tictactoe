@@ -103,6 +103,43 @@ BaseTicTacToeBoard::BaseTicTacToeBoard() {
         return ' ';
     }
 
+    char BaseTicTacToeBoard::checkTwoInARowSubgame() {
+        //returns X if just X has a two in a row, O if just O has a two in a row, ' ' if neither and 'B' if both
+        //only counts as a two in a row if its not blocked, i.e next move could win the game
+        char players[2] = {'X', 'O'};
+        int xCount = 0;
+        int oCount = 0;
+        for(int player = 0; player < 2; ++player) {
+            sideToMove=players[player];
+            std::vector<int> legalMoves = getLegalMoves();
+            for(int move = 0; move < legalMoves.size(); move++) {
+                makeMoveSubGame(legalMoves[move], sideToMove);
+                if(checkWinner() == sideToMove) {
+                    if (sideToMove == 'X') {
+                        xCount++;
+                    }
+                    else {
+                        oCount++;
+                    }
+                }
+                unmakeMoveSubGame(legalMoves[move]);
+            }
+        }
+        if (xCount > 0 && oCount > 0) {
+            return 'B';
+        }
+        else if (xCount > 0) {
+            return 'X';
+        }
+        else if (oCount > 0) {
+            return 'O';
+        }
+        else {
+            return ' ';
+        }
+
+    }
+
     bool BaseTicTacToeBoard::isDrawn() {
         return checkWinner() == ' ' && getLegalMoves().size() == 0;
     }

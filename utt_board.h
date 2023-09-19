@@ -1,6 +1,7 @@
 #ifndef UTT_BOARD_H
 #define UTT_BOARD_H
 #include "base_tictactoe_board.h"
+#include <array>
 #pragma once
 class MoveStack {
     private:
@@ -29,6 +30,7 @@ class UltimateTicTacToeBoard {
         bool isDrawn();
         char checkWinnerSubGame(int metaRow, int metaCol);
         void displayBoard();
+        std::array<std::array<BaseTicTacToeBoard, 3>, 3> getBoard();
 };
 
 #endif 

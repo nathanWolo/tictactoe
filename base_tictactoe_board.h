@@ -13,6 +13,7 @@ class BaseTicTacToeBoard {
         void unmakeMoveSubGame(int index);
         std::vector<int> getLegalMoves();
         char checkWinner();
+        char checkTwoInARowSubgame();
         bool isDrawn();
         void displayBoard();
         char getSideToMove();

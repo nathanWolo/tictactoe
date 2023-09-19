@@ -19,11 +19,16 @@ int main() {
     int computerGamesAsX = 0;
     int computerGamesAsO = 0;
     int gamesToRun = 1000;
-    int thinkingTime = 80;
+    int thinkingTime = 100;
     for (int i = 0; i < gamesToRun; ++i) {
         UltimateTicTacToeBoard board = UltimateTicTacToeBoard();
-        EngineV0NaiveNegamax oldEngine = EngineV0NaiveNegamax();
-        EngineV1AlphaBeta newEngine = EngineV1AlphaBeta();
+        RandomEngine random = RandomEngine();
+        EngineV0NaiveNegamax v0 = EngineV0NaiveNegamax();
+        EngineV1AlphaBeta v1 = EngineV1AlphaBeta();
+        EngineV2ImprovedEval v2 = EngineV2ImprovedEval();
+        EngineV3AspirationWindows v3 = EngineV3AspirationWindows();
+        auto oldEngine = v2;
+        auto newEngine = v3;
         int movesMade = 0;
         while(board.checkWinner() == ' ' && !board.isDrawn()) {
             board.displayBoard();

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
+#include <array>
 #include "utt_board.h"
 #include "base_tictactoe_board.h"
 
@@ -38,7 +39,15 @@ UltimateTicTacToeBoard::UltimateTicTacToeBoard() {
         }
     }
 }
-
+std::array<std::array<BaseTicTacToeBoard, 3>, 3> UltimateTicTacToeBoard::getBoard() {
+    std::array<std::array<BaseTicTacToeBoard, 3>, 3> b;
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; j++) {
+            b[i][j] = ultimateBoard[i][j];
+        }
+    }
+    return b;
+}
 void UltimateTicTacToeBoard::makeMove(int metaIndex, int subIndex) {
     if (!moveStack.isEmpty()) {
         int legalMetaIndex = moveStack.peek()[1];
