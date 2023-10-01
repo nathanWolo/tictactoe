@@ -38,6 +38,35 @@ UltimateTicTacToeBoard::UltimateTicTacToeBoard() {
             ultimateBoard[i][j] = BaseTicTacToeBoard();
         }
     }
+    zobristTable = std::array<std::array<std::array<uint64_t, 3>, 9>, 9>(); //initialize zobrist table
+
+    initializeZobristTable();
+    zobristHash = 0;
+    //set zobrist hash to initial value
+    for(int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            zobristHash ^= zobristTable[i][j][0];
+            //i is meta index
+            //j is subindex
+            //0 is empty
+            //1 is X
+            //2 is O
+        }
+    }
+}
+uint64_t UltimateTicTacToeBoard::getZobristHash() {
+    return zobristHash;
+}
+void updateZobristHash(int metaIndex, int subIndex, char sideToMoveZobrist) {
+    if (sideToMoveZobrist == ' ') {
+        zobristHash ^= zobristTable[metaIndex][subIndex][0];
+    }
+    else if (sideToMoveZobrist == 'X') {
+        zobristHash ^= zobristTable[metaIndex][subIndex][1];
+    }
+    else {
+        zobristHash ^= zobristTable[metaIndex][subIndex][2];
+    }
 }
 std::array<std::array<BaseTicTacToeBoard, 3>, 3> UltimateTicTacToeBoard::getBoard() {
     std::array<std::array<BaseTicTacToeBoard, 3>, 3> b;
@@ -213,5 +242,19 @@ void UltimateTicTacToeBoard::displayBoard() {
         // std::cout << "---------------";
         // std::cout << "\n";
         std::cout << "--" << subGameY * 3 + 0 << "-----" << subGameY * 3 + 1 << "-----" << subGameY * 3 + 2 << "\n";
+    }
+}
+
+void UltimateTicTacToeBoard::initializeZobristTable() {
+    std::random_device rd;
+    std::mt19937_64 generator(rd());
+    std::uniform_int_distribution<uint64_t> distribution;
+
+    for (int row = 0; row < 9; ++row) {
+        for (int col = 0; col < 9; ++col) {
+            for (int state = 0; state < 3; ++state) {
+                zobristTable[row][col][state] = distribution(generator);
+            }
+        }
     }
 }

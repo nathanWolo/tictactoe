@@ -2,7 +2,7 @@
 
 # Compiler and flags
 CC = g++
-CFLAGS = -std=c++20 -fsanitize=undefined -fsanitize=address
+CFLAGS = -std=c++20 -O3 -march=native -funroll-loops -ffast-math #-fsanitize=undefined -fsanitize=address
 
 # Target executable
 BASE_GAME = base_tictactoe

@@ -7,7 +7,16 @@
 #include "base_tictactoe_board.h"
 #include "utt_engine.h"
 
-
+/*
+V3 (Aspiration windows) VS V2 (improved eval) TEST RESULTS:
+Game 1000 of 1000                                                                                           
+new version wins: 512 new version draws: 289 new version losses: 198                                        
+new version wins as X: 248 new version draws as X: 121 new version losses as X: 83                         
+new version wins as O: 264 new version draws as O: 168 new version losses as O: 115                         
+new engine winrate: 0.657157                                                                               
+new engine winrate as X: 0.682522                                                                           
+new engine winrate as O: 0.636197  
+*/
 EngineV3AspirationWindows::EngineV3AspirationWindows() {
     bestMoveRoot = {0, 0};
     nodes = 0;
@@ -42,13 +51,6 @@ int EngineV3AspirationWindows::evaluate(UltimateTicTacToeBoard board, char rootP
             }
         }
     }
-    // //temp bonus for side to move
-    // if (board.getSideToMove() == 'X') {
-    //     xScore += 20;
-    // }
-    // else {
-    //     oScore += 20;
-    // }
     if (rootPlayer == 'X') {
         return xScore - oScore;
     } else {
@@ -148,7 +150,16 @@ std::vector<int> EngineV3AspirationWindows::getBestMove(UltimateTicTacToeBoard b
     return bestMoveRoot;
 }
 
-
+/*
+V2 (improved eval) VS V1 (naive alpha-beta) TEST RESULTS:
+Game 1000 of 1000                                                                                           
+new version wins: 340 new version draws: 350 new version losses: 309                                        
+new version wins as X: 188 new version draws as X: 172 new version losses as X: 133                         
+new version wins as O: 152 new version draws as O: 178 new version losses as O: 176                         
+new engine winrate: 0.515516                                                                                
+new engine winrate as X: 0.555781                                                                           
+new engine winrate as O: 0.476285
+*/
 
 EngineV2ImprovedEval::EngineV2ImprovedEval() {
     bestMoveRoot = {0, 0};
@@ -259,7 +270,18 @@ std::vector<int> EngineV2ImprovedEval::getBestMove(UltimateTicTacToeBoard board,
     return bestMoveRoot;
 }
 
+/*
+V1 (alpha-beta) VS V0 (naive minimax) TEST RESULTS:
 
+new version wins: 909 new version draws: 14 new version losses: 76
+new version wins as X: 485 new version draws as X: 4 new version losses as X: 4                                                                    
+new version wins as O: 424 new version draws as O: 10 new version losses as O: 72                                                                  
+new engine winrate: 0.916917                                                                                                                       
+new engine winrate as X: 0.98783                                                                                                                   
+new engine winrate as O: 0.847826  
+
+
+*/
 
 EngineV1AlphaBeta::EngineV1AlphaBeta() {
     bestMoveRoot = {0, 0};

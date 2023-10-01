@@ -20,6 +20,8 @@ class UltimateTicTacToeBoard {
         char sideToMove;
         //stack of previous moves to help determine which sub-board to play in
         MoveStack moveStack;
+        uint64_t zobristTable[9][9][3];
+        uint64_t zobristHash;
     public:
         UltimateTicTacToeBoard();
         void makeMove(int metaIndex, int subIndex);
@@ -31,6 +33,10 @@ class UltimateTicTacToeBoard {
         char checkWinnerSubGame(int metaRow, int metaCol);
         void displayBoard();
         std::array<std::array<BaseTicTacToeBoard, 3>, 3> getBoard();
+        void initializeZobristTable();
+        uint64_t getZobristHash();
+        void updateZobristHash(int metaIndex, int subIndex);
+
 };
 
 #endif 

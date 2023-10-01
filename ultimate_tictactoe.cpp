@@ -27,8 +27,12 @@ int main() {
         EngineV1AlphaBeta v1 = EngineV1AlphaBeta();
         EngineV2ImprovedEval v2 = EngineV2ImprovedEval();
         EngineV3AspirationWindows v3 = EngineV3AspirationWindows();
+        
+        
         auto oldEngine = v2;
         auto newEngine = v3;
+        
+        
         int movesMade = 0;
         while(board.checkWinner() == ' ' && !board.isDrawn()) {
             board.displayBoard();
