@@ -4,6 +4,7 @@
 #include <array>
 #include "utt_board.h"
 #include "base_tictactoe_board.h"
+#include <random>
 
 MoveStack::MoveStack() {
     stack = std::vector<std::vector<int>>();
@@ -57,7 +58,7 @@ UltimateTicTacToeBoard::UltimateTicTacToeBoard() {
 uint64_t UltimateTicTacToeBoard::getZobristHash() {
     return zobristHash;
 }
-void updateZobristHash(int metaIndex, int subIndex, char sideToMoveZobrist) {
+void UltimateTicTacToeBoard::updateZobristHash(int metaIndex, int subIndex, char sideToMoveZobrist) {
     if (sideToMoveZobrist == ' ') {
         zobristHash ^= zobristTable[metaIndex][subIndex][0];
     }

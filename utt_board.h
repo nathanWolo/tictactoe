@@ -20,7 +20,7 @@ class UltimateTicTacToeBoard {
         char sideToMove;
         //stack of previous moves to help determine which sub-board to play in
         MoveStack moveStack;
-        uint64_t zobristTable[9][9][3];
+        std::array<std::array<std::array<uint64_t, 3>, 9>, 9> zobristTable;
         uint64_t zobristHash;
     public:
         UltimateTicTacToeBoard();
@@ -35,7 +35,7 @@ class UltimateTicTacToeBoard {
         std::array<std::array<BaseTicTacToeBoard, 3>, 3> getBoard();
         void initializeZobristTable();
         uint64_t getZobristHash();
-        void updateZobristHash(int metaIndex, int subIndex);
+        void updateZobristHash(int metaIndex, int subIndex, char sideToMoveZobrist); 
 
 };
 
